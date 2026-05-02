@@ -1,0 +1,346 @@
+@import url('https://fonts.googleapis.com/css2?family=VT323&family=Inter:wght@400;600&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg: #0f0f0f;
+  --card-bg: #1a1a1a;
+  --green: #5b8a2e;
+  --green-hover: #6fa637;
+  --green-light: #8bc34a;
+  --text: #d4d4d4;
+  --text-muted: #888;
+  --border: #2e2e2e;
+  --red: #7a2020;
+  --red-hover: #a02828;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
+  min-height: 100vh;
+}
+
+.main-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+/* ── Navbar ───────────────────────────── */
+.navbar {
+  background-color: #111;
+  border-bottom: 3px solid var(--green);
+  padding: 0.75rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navbar-brand {
+  font-family: 'VT323', monospace;
+  font-size: 1.9rem;
+  color: var(--green-light);
+  text-decoration: none;
+  letter-spacing: 2px;
+}
+
+.navbar-brand span { color: #fff; }
+
+.navbar-links {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.nav-link {
+  color: var(--text);
+  text-decoration: none;
+  font-size: 0.9rem;
+  padding: 0.4rem 0.8rem;
+  transition: background 0.2s;
+}
+
+.nav-link:hover { background: var(--border); }
+
+/* ── Buttons ──────────────────────────── */
+.btn {
+  display: inline-block;
+  padding: 0.5rem 1.2rem;
+  border: none;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: background 0.2s;
+  text-decoration: none;
+}
+
+.btn-primary { background: var(--green); color: #fff; }
+.btn-primary:hover { background: var(--green-hover); }
+
+.btn-danger { background: var(--red); color: #fff; }
+.btn-danger:hover { background: var(--red-hover); }
+
+.btn-ghost {
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+.btn-ghost:hover { background: var(--border); }
+
+/* ── Post Card (feed) ─────────────────── */
+.post-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--green);
+  padding: 1rem 1.2rem;
+  margin-bottom: 0.75rem;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+  text-decoration: none;
+  display: block;
+  color: var(--text);
+}
+
+.post-card:hover {
+  border-left-color: var(--green-light);
+  background: #222;
+}
+
+.post-card-meta {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-bottom: 0.35rem;
+}
+
+.post-card-title {
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin-bottom: 0.35rem;
+}
+
+.post-card-upvotes {
+  font-size: 0.8rem;
+  color: var(--green-light);
+}
+
+/* ── Feed Controls ────────────────────── */
+.feed-controls {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.search-input {
+  flex: 1;
+  min-width: 200px;
+  padding: 0.5rem 0.75rem;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-size: 0.9rem;
+  outline: none;
+}
+
+.search-input:focus { border-color: var(--green); }
+
+.sort-buttons { display: flex; gap: 0.5rem; }
+
+.sort-btn {
+  padding: 0.45rem 0.9rem;
+  font-size: 0.8rem;
+  border: 1px solid var(--border);
+  background: var(--card-bg);
+  color: var(--text-muted);
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  transition: all 0.2s;
+}
+
+.sort-btn.active {
+  border-color: var(--green);
+  color: var(--green-light);
+  background: #1e2a15;
+}
+
+/* ── Form ─────────────────────────────── */
+.form-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  padding: 2rem;
+}
+
+.form-card h2 {
+  font-family: 'VT323', monospace;
+  font-size: 1.8rem;
+  color: var(--green-light);
+  margin-bottom: 1.5rem;
+  letter-spacing: 1px;
+}
+
+.form-group { margin-bottom: 1.2rem; }
+
+.form-group label {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 0.4rem;
+}
+
+.form-input,
+.form-textarea {
+  width: 100%;
+  padding: 0.6rem 0.75rem;
+  background: #111;
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-size: 0.95rem;
+  font-family: 'Inter', sans-serif;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.form-input:focus,
+.form-textarea:focus { border-color: var(--green); }
+
+.form-textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+/* ── Post Detail Page ─────────────────── */
+.post-detail {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.post-detail-meta {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-bottom: 0.5rem;
+}
+
+.post-detail-title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #fff;
+}
+
+.post-detail-content {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+  white-space: pre-wrap;
+}
+
+.post-detail-image {
+  width: 100%;
+  max-height: 400px;
+  object-fit: cover;
+  margin-bottom: 1rem;
+  border: 1px solid var(--border);
+}
+
+.upvote-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.upvote-btn {
+  background: #1e2a15;
+  border: 1px solid var(--green);
+  color: var(--green-light);
+  padding: 0.5rem 1.2rem;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-family: 'Inter', sans-serif;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: background 0.2s;
+}
+
+.upvote-btn:hover { background: #2a3d1a; }
+
+.upvote-count {
+  font-size: 0.95rem;
+  color: var(--green-light);
+  font-weight: 600;
+}
+
+.post-actions {
+  display: flex;
+  gap: 0.75rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+}
+
+/* ── Comments ─────────────────────────── */
+.comments-section h3 {
+  font-family: 'VT323', monospace;
+  font-size: 1.4rem;
+  color: var(--green-light);
+  margin-bottom: 1rem;
+  letter-spacing: 1px;
+}
+
+.comment {
+  background: #111;
+  border: 1px solid var(--border);
+  border-left: 2px solid var(--green);
+  padding: 0.75rem 1rem;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.comment-meta {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-bottom: 0.25rem;
+}
+
+.comment-form {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* ── Misc ─────────────────────────────── */
+.page-title {
+  font-family: 'VT323', monospace;
+  font-size: 2rem;
+  color: var(--green-light);
+  margin-bottom: 1.5rem;
+  letter-spacing: 1px;
+}
+
+.empty-state {
+  text-align: center;
+  color: var(--text-muted);
+  padding: 3rem;
+  font-size: 0.95rem;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 1rem;
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.back-link:hover { color: var(--text); }
