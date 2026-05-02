@@ -344,3 +344,146 @@ body {
 }
 
 .back-link:hover { color: var(--text); }
+
+/* ── Auth ─────────────────────────────── */
+.auth-container {
+  display: flex;
+  justify-content: center;
+  padding-top: 3rem;
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 420px;
+}
+
+.auth-card h2 {
+  font-family: 'VT323', monospace;
+  font-size: 1.8rem;
+  color: var(--green-light);
+  margin-bottom: 0.25rem;
+  letter-spacing: 1px;
+}
+
+.auth-subtitle {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  margin-bottom: 1.5rem;
+}
+
+.auth-error {
+  background: #2a1515;
+  border: 1px solid var(--red);
+  color: #e07070;
+  padding: 0.6rem 0.75rem;
+  font-size: 0.85rem;
+  margin-bottom: 1rem;
+}
+
+.auth-btn {
+  width: 100%;
+  padding: 0.65rem;
+  margin-bottom: 0.75rem;
+  text-align: center;
+}
+
+.auth-divider {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 0.75rem 0;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+}
+
+.auth-divider::before,
+.auth-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+.btn-oauth {
+  width: 100%;
+  background: #1e1e1e;
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 0.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  transition: background 0.2s;
+  margin-bottom: 1rem;
+}
+
+.btn-oauth:hover { background: #2a2a2a; }
+
+.auth-links {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.auth-links a {
+  color: var(--green-light);
+  text-decoration: none;
+}
+
+.auth-links a:hover { text-decoration: underline; }
+
+/* ── Navbar user info ─────────────────── */
+.nav-user {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  max-width: 160px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.nav-logout {
+  font-size: 0.85rem;
+  padding: 0.4rem 0.8rem;
+}
+
+/* ── AI Summary ───────────────────────── */
+.ai-summary-section {
+  background: #0d1a0d;
+  border: 1px solid var(--green);
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.ai-summary-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--green-light);
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.ai-badge {
+  background: var(--green);
+  color: #fff;
+  font-size: 0.7rem;
+  padding: 0.1rem 0.4rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.ai-summary-content {
+  color: var(--text);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-top: 0.75rem;
+  white-space: pre-wrap;
+}

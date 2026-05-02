@@ -19,6 +19,9 @@ function PostPage() {
   const [post, setPost] = useState(null)
   const [comments, setComments] = useState([])
   const [commentText, setCommentText] = useState('')
+  const [summary, setSummary] = useState('')
+  const [summaryLoading, setSummaryLoading] = useState(false)
+  const [summaryError, setSummaryError] = useState('')
 
   useEffect(() => {
     fetchPost()
@@ -26,11 +29,7 @@ function PostPage() {
   }, [id])
 
   const fetchPost = async () => {
-    const { data, error } = await supabase
-      .from('posts')
-      .select()
-      .eq('id', id)
-      .single()
+    const { data, error } = await supabase.from('posts').select().eq('id', id).single()
     if (error) console.error(error)
     else setPost(data)
   }
@@ -57,7 +56,6 @@ function PostPage() {
 
   const handleDelete = async () => {
     if (!window.confirm('Delete this post? This cannot be undone.')) return
-    // delete comments first to avoid FK constraint issues
     await supabase.from('comments').delete().eq('post_id', id)
     await supabase.from('posts').delete().eq('id', id)
     navigate('/')
@@ -76,13 +74,36 @@ function PostPage() {
     }
   }
 
+  const handleSummarize = async () => {
+    setSummaryLoading(true)
+    setSummaryError('')
+    setSummary('')
+    try {
+      const res = await fetch('/.netlify/functions/summarize', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          title: post.title,
+          content: post.content,
+          upvotes: post.upvotes,
+          comments
+        })
+      })
+      const data = await res.json()
+      if (!res.ok) throw new Error(data.error || 'Failed to generate summary')
+      setSummary(data.summary)
+    } catch (err) {
+      setSummaryError(err.message)
+    }
+    setSummaryLoading(false)
+  }
+
   if (!post) return <div className="empty-state">Loading post...</div>
 
   return (
     <div>
       <Link to="/" className="back-link">← Back to Feed</Link>
 
-      {/* Post Detail */}
       <div className="post-detail">
         <div className="post-detail-meta">Posted {timeAgo(post.created_at)}</div>
         <div className="post-detail-title">{post.title}</div>
@@ -100,19 +121,36 @@ function PostPage() {
           />
         )}
 
-        {/* Upvote */}
         <div className="upvote-row">
-          <button className="upvote-btn" onClick={handleUpvote}>
-            ⬆ Upvote
-          </button>
+          <button className="upvote-btn" onClick={handleUpvote}>⬆ Upvote</button>
           <span className="upvote-count">{post.upvotes} upvotes</span>
         </div>
 
-        {/* Edit / Delete */}
         <div className="post-actions">
           <Link to={`/edit/${post.id}`} className="btn btn-ghost">✏️ Edit</Link>
           <button className="btn btn-danger" onClick={handleDelete}>🗑️ Delete</button>
         </div>
+      </div>
+
+      {/* AI Summary */}
+      <div className="ai-summary-section">
+        <div className="ai-summary-header">
+          <span className="ai-badge">✦ AI</span>
+          <span>Post Summary</span>
+        </div>
+        {summary ? (
+          <div className="ai-summary-content">{summary}</div>
+        ) : (
+          <button
+            className="btn btn-primary"
+            onClick={handleSummarize}
+            disabled={summaryLoading}
+            style={{ marginTop: '0.75rem' }}
+          >
+            {summaryLoading ? '⏳ Generating summary...' : '✦ Generate AI Summary'}
+          </button>
+        )}
+        {summaryError && <div className="auth-error" style={{ marginTop: '0.5rem' }}>{summaryError}</div>}
       </div>
 
       {/* Comments */}
