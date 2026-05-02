@@ -40,6 +40,10 @@ The following **optional** features are implemented:
 - [ ] Users can add more characteristics to their posts (videos, flags, local image upload)
 - [ ] Web app displays a loading animation whenever data is being fetched
 
+## Deployment
+
+Live site: https://profound-quokka-85b470.netlify.app
+
 ## Video Walkthrough
 
 Here's a walkthrough of implemented user stories:
