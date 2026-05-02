@@ -18,7 +18,7 @@ exports.handler = async (event) => {
         max_tokens: 256,
         messages: [{
           role: 'user',
-          content: `You are a Minecraft community assistant. Summarize this forum post in 2-3 enthusiastic sentences. Highlight what makes it interesting or valuable to the Minecraft community.
+          content: `You are a Minecraft community assistant. Summarize this forum post in 2-3 enthusiastic sentences. Highlight what makes it interesting or valuable to the Minecraft community. Use plain text only — no markdown, no headers, no bullet points, no bold or italic formatting.
 
 Title: ${title}
 Description: ${content || 'No description provided'}
